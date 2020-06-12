@@ -1,0 +1,20 @@
+{
+    order geoip first
+}
+
+:9000 {
+    geoip GeoLite2-Country.mmdb {
+        block_list {
+            country TW
+            ip 120.100.100.0
+        }
+        allow_list {
+            country US
+            allow_only false
+        }
+    }
+    header Country-Code {geoip_country_code}
+    header Country-Name {geoip_country_name}
+    file_server
+}
+
