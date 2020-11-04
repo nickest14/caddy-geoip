@@ -26,7 +26,7 @@ geoip /path/to/db/GeoLite2-Country.mmdb {
         ip 35.100.100.0 // US IP
     }
     allow_list {
-        country US     
+        country US
         ip 120.100.100.0 // TW IP
         allow_only false
     }
@@ -43,7 +43,7 @@ header Country-Name {geoip_country_name}
 ```
 ![header-country](https://github.com/nickest14/caddy-geoip/blob/master/imgs/header-country.png?raw=true)
 
-## Complete caddyfile example
+##### Complete caddyfile example
 ```
 {
     order geoip first
@@ -56,7 +56,7 @@ header Country-Name {geoip_country_name}
             ip 35.100.100.0 // US IP
         }
         allow_list {
-            country US     
+            country US
             ip 120.100.100.0 // TW IP
             allow_only false
         }
@@ -65,4 +65,11 @@ header Country-Name {geoip_country_name}
     header Country-Name {geoip_country_name}
     file_server
 }
+```
+
+##### Develop in local
+```
+// Enter into cmd forder and then run this
+go build -o caddy main.go
+./caddy run  --config Caddyfile
 ```
