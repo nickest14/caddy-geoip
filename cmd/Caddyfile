@@ -17,4 +17,3 @@
     header Country-Name {geoip_country_name}
     file_server
 }
-

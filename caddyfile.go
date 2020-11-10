@@ -84,11 +84,6 @@ func (g *Geoip) Provision(ctx caddy.Context) error {
 	return nil
 }
 
-// Validate implements caddy.Validator.
-func (g *Geoip) Validate() error {
-	return nil
-}
-
 // ServeHTTP implements caddyhttp.GeoipHandler.
 func (g Geoip) ServeHTTP(w http.ResponseWriter, r *http.Request, next caddyhttp.Handler) error {
 	g.lookupLocation(w, r)
@@ -186,7 +181,7 @@ func getClientIP(r *http.Request) (net.IP, error) {
 			}
 		}
 	}
-	// Parse the ip address string into a net.IP.
+	// Parse the ip address string into a net IP.
 	parsedIP := net.ParseIP(ip)
 	if parsedIP == nil {
 		return nil, errors.New("unable to parse address")
@@ -260,7 +255,6 @@ func parseCaddyfile(h httpcaddyfile.Helper) (caddyhttp.MiddlewareHandler, error)
 // Interface guards
 var (
 	_ caddy.Provisioner           = (*Geoip)(nil)
-	_ caddy.Validator             = (*Geoip)(nil)
 	_ caddyhttp.MiddlewareHandler = (*Geoip)(nil)
 	_ caddyfile.Unmarshaler       = (*Geoip)(nil)
 )
